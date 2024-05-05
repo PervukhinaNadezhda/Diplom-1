@@ -8,16 +8,17 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static helper.Constants.DELTA_FLOAT_BOUNED;
+
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTests {
-
-    private final Database database = new Database();
-    private final Bun firstBun = database.availableBuns().get(0);
 
     @Mock
     private Ingredient firstIngredient;
     @Mock
     private Ingredient secondIngredient;
+    @Mock
+    private Bun firstBun;
 
     @Test
     public void setBunsTest() {
@@ -66,9 +67,9 @@ public class BurgerTests {
     public void getPriceReturnCorrectPrice() {
         Burger burger = new Burger();
         Mockito.when(firstIngredient.getPrice())
-                .thenReturn(GenerateRandom.generatingRandomFloatBouned(10f, 100f));
+                .thenReturn(GenerateRandom.generateRandomFloatBouned(10f, 100f));
         Mockito.when(secondIngredient.getPrice())
-                .thenReturn(GenerateRandom.generatingRandomFloatBouned(10f, 100f));
+                .thenReturn(GenerateRandom.generateRandomFloatBouned(10f, 100f));
 
         burger.setBuns(firstBun);
         burger.addIngredient(firstIngredient);
@@ -76,21 +77,21 @@ public class BurgerTests {
 
         float expectedPrice = (burger.bun.getPrice() * 2) + firstIngredient.getPrice() + secondIngredient.getPrice();
 
-        Assert.assertEquals(expectedPrice, burger.getPrice(), 0);
+        Assert.assertEquals(expectedPrice, burger.getPrice(), DELTA_FLOAT_BOUNED);
     }
 
     @Test
     public void getReceiptReturnCorrectReceipt() {
         Burger burger = new Burger();
         Mockito.when(firstIngredient.getType()).thenReturn(IngredientType.SAUCE);
-        Mockito.when(firstIngredient.getName()).thenReturn(GenerateRandom.generatingRandomFood());
+        Mockito.when(firstIngredient.getName()).thenReturn(GenerateRandom.generateRandomFood());
         Mockito.when(firstIngredient.getPrice())
-                .thenReturn(GenerateRandom.generatingRandomFloatBouned(10f, 100f));
+                .thenReturn(GenerateRandom.generateRandomFloatBouned(10f, 100f));
 
         Mockito.when(secondIngredient.getType()).thenReturn(IngredientType.FILLING);
-        Mockito.when(secondIngredient.getName()).thenReturn(GenerateRandom.generatingRandomFood());
+        Mockito.when(secondIngredient.getName()).thenReturn(GenerateRandom.generateRandomFood());
         Mockito.when(secondIngredient.getPrice())
-                .thenReturn(GenerateRandom.generatingRandomFloatBouned(10f, 100f));
+                .thenReturn(GenerateRandom.generateRandomFloatBouned(10f, 100f));
 
         burger.setBuns(firstBun);
         burger.addIngredient(firstIngredient);

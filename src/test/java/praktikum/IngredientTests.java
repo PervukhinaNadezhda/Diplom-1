@@ -3,6 +3,8 @@ package praktikum;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static helper.Constants.DELTA_FLOAT_BOUNED;
+
 public class IngredientTests {
 
     private final Database database = new Database();
@@ -19,7 +21,7 @@ public class IngredientTests {
     @Test
     public void getPriceReturnIngredientPriceTest() {
         Ingredient ingredient = new Ingredient(firstIngredientType, firstIngredientName, firstIngredientPrice);
-        Assert.assertEquals(firstIngredientPrice, ingredient.getPrice(), 0f);
+        Assert.assertEquals(firstIngredientPrice, ingredient.getPrice(), DELTA_FLOAT_BOUNED);
     }
 
     @Test

@@ -6,11 +6,11 @@ import java.util.Random;
 
 public class GenerateRandom {
 
-    public static float generatingRandomFloatBouned(float leftLimit, float rightLimit) {
+    public static float generateRandomFloatBouned(float leftLimit, float rightLimit) {
         return leftLimit + new Random().nextFloat() * (rightLimit - leftLimit);
     }
 
-    public static String generatingRandomFood() {
+    public static String generateRandomFood() {
         Faker faker = new Faker();
         return faker.food().ingredient();
     }
